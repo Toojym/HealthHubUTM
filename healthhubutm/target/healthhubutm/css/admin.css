@@ -1,0 +1,130 @@
+/* admin.css */
+
+/* --- General Consistency --- */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f6f8fb;
+    margin: 0;
+    padding: 40px;
+}
+.card {
+    /* Wider for list, but handles detail view too */
+    max-width: 900px; 
+    margin: auto;
+    background: #fff;
+    padding: 24px 30px; /* Slightly more padding for detail */
+    border-radius: 12px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+}
+h1 {
+    text-align: center;
+    font-size: 1.8em;
+    color: #007bff; /* Use blue for main header */
+    margin-bottom: 25px;
+    padding-bottom: 10px;
+    border-bottom: 3px solid #f1f1f1;
+}
+.error-message {
+    color: red;
+    font-weight: bold;
+    padding: 10px;
+    border: 1px solid #ffdddd;
+    background-color: #fff0f0;
+    margin-bottom: 15px;
+    border-radius: 4px;
+}
+.back-link {
+    display: block;
+    text-align: center;
+    margin-top: 30px;
+    padding: 10px 15px;
+    background-color: #007bff;
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 8px;
+    transition: background-color 0.2s;
+    width: 200px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.back-link:hover {
+    background-color: #0056b3;
+}
+
+/* --- List View Specific (admin_person_list.jsp) --- */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden; /* Ensures rounded corners apply to borders */
+}
+th, td {
+    text-align: left;
+    padding: 12px 10px;
+    border-bottom: 1px solid #eee;
+}
+th {
+    background-color: #e9f5ff; /* Light blue header background */
+    font-weight: 600;
+    color: #333;
+}
+tr:hover {
+    background-color: #f5fafd; 
+}
+.action-link {
+    color: #007bff;
+    text-decoration: none;
+    margin-right: 10px;
+    transition: color 0.1s;
+}
+.action-link:hover {
+    text-decoration: underline;
+    color: #0056b3;
+}
+
+/* --- Detail View Specific (admin_person_view.jsp) --- */
+
+/* Container for two-column grid */
+.detail-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Two equal columns */
+    gap: 20px;
+    padding-bottom: 20px;
+}
+
+/* Style for individual detail rows */
+.detail-item {
+    padding: 15px;
+    background-color: #f9f9f9;
+    border-radius: 6px;
+    border-left: 5px solid #007bff;
+}
+
+.detail-item.highlight {
+    background-color: #e6f7ff; /* Lighter background for BMI/Category */
+    border-left-color: #28a745; /* Different color for highlights */
+    grid-column: 1 / span 2; /* Make highlights span both columns */
+    margin-top: 10px;
+    padding: 20px;
+}
+
+.detail-label {
+    display: block;
+    font-weight: 600;
+    color: #333;
+    font-size: 0.9em;
+    margin-bottom: 5px;
+    text-transform: uppercase;
+}
+.detail-value {
+    font-size: 1.4em;
+    font-weight: bold;
+    color: #007bff;
+}
+.detail-item.highlight .detail-value {
+    color: #28a745; /* Success color for BMI/Category */
+    font-size: 1.6em;
+}
