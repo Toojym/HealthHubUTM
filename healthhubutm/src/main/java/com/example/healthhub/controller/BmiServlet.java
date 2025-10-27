@@ -27,6 +27,15 @@ public class BmiServlet extends HttpServlet {
             //getServletContext().setAttribute("person", person);
             //req.getRequestDispatcher("/result.jsp").forward(req, resp);
             resp.sendRedirect("result.jsp");
+
+
+
+
+            
+                //to invalidate during logout
+                HttpSession sess = req.getSession();
+                sess.invalidate();
+                resp.sendRedirect("landingpage.html");
             }
         
     
