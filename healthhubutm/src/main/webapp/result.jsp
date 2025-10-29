@@ -127,7 +127,7 @@
 </div>
 <%-- NEW ADMIN BUTTON OUTSIDE THE CARD --%>
 <a href="<%= request.getContextPath() %>/admin/person/list" class="back-link">
-    Go to Admin Page
+    Go to Admin page
 </a>
 </body>
 </html>

@@ -1,6 +1,10 @@
+com\example\healthhub\controller\LoginServlet.class
+com\example\healthhub\controller\ProfileServlet.class
+com\example\healthhub\repo\PersonRepo.class
+com\example\healthhub\model\Person.class
+com\example\healthhub\model\User.class
 com\example\healthhub\controller\BmiServlet.class
 com\example\healthhub\controller\AdminPersonViewServlet.class
 com\example\healthhub\controller\AdminPersonListServlet.class
 com\example\healthhub\controller\AdminPersonDeleteServlet.class
-com\example\healthhub\repo\PersonRepo.class
-com\example\healthhub\model\Person.class
+com\example\healthhub\controller\LogoutServlet.class

@@ -1,50 +1,74 @@
 package com.example.healthhub.controller;
+
+import com.example.healthhub.model.Person;
+import com.example.healthhub.repo.PersonRepo;
+import java.io.IOException;
+import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpSession;
-
-import com.example.healthhub.model.*;
-import com.example.healthhub.repo.PersonRepo;
-
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 @WebServlet("/bmi")
-
 public class BmiServlet extends HttpServlet {
+    private static final long serialVersionUID = 1L;
+
     @Override
-    protected void doPost(javax.servlet.http.HttpServletRequest req, javax.servlet.http.HttpServletResponse resp)
-        throws javax.servlet.ServletException, java.io.IOException{
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp)
+            throws ServletException, IOException {
+       
+        req.getRequestDispatcher("/form.html").forward(req, resp);
+    }
+    
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp)
+            throws ServletException, IOException {
+        
+        String name = req.getParameter("name");
+        String yobStr = req.getParameter("yob");
+        String weightStr = req.getParameter("weight");
+        String heightStr = req.getParameter("height");
 
-            String name = req.getParameter("name");
-            int yob = Integer.parseInt(req.getParameter("yob"));
-            double weight = Double.parseDouble(req.getParameter("weight"));
-            double height = Double.parseDouble(req.getParameter("height"));
+        
+        if (name == null || name.trim().isEmpty() || yobStr == null || yobStr.trim().isEmpty() || 
+            weightStr == null || weightStr.trim().isEmpty() || heightStr == null || heightStr.trim().isEmpty()) {
+            
+            req.setAttribute("errorMessage", "All fields are mandatory.");
+           
+            req.getRequestDispatcher("/form.html").forward(req, resp);
+            return;
+        }
 
-            Person person = new Person(name,yob,weight,height);
-            //PersonRepo.save(person);
-            //req.setAttribute("person", person);
-            HttpSession session = req.getSession();
-            session.setAttribute("person", person);
-            //getServletContext().setAttribute("person", person);
-            //req.getRequestDispatcher("/result.jsp").forward(req, resp);
-            resp.sendRedirect("result.jsp");
-
-
-
+        try {
+            int yob = Integer.parseInt(yobStr);
+            double weight = Double.parseDouble(weightStr);
+            double height = Double.parseDouble(heightStr);
 
             
-                //to invalidate during logout
-                HttpSession sess = req.getSession();
-                sess.invalidate();
-                resp.sendRedirect("landingpage.html");
+            if (yob <= 0 || weight <= 0 || height <= 0) {
+                throw new IllegalArgumentException("Year of birth, weight, and height must be positive.");
             }
-        
-    
+            
+           
+            Person newPerson = new Person(name, yob, weight, height);
+            
+           
+            PersonRepo.save(newPerson);
 
-    protected void doGet(javax.servlet.http.HttpServletRequest req, javax.servlet.http.HttpServletResponse resp)
-        throws javax.servlet.ServletException, java.io.IOException{
-
-    
-          req.getRequestDispatcher("form.html").forward(req, resp);  
-        
+           
+            req.setAttribute("person", newPerson);
+            
+            
+            req.getRequestDispatcher("/result.jsp").forward(req, resp);
+            
+        } catch (NumberFormatException e) {
+            req.setAttribute("errorMessage", "Year, weight, and height must be valid numbers.");
+           
+            req.getRequestDispatcher("/form.html").forward(req, resp);
+        } catch (IllegalArgumentException e) {
+            req.setAttribute("errorMessage", e.getMessage());
+            
+            req.getRequestDispatcher("/form.html").forward(req, resp);
+        }
     }
 }

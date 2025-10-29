@@ -7,6 +7,10 @@ import java.util.List;
 public class PersonRepo {
     private static final List<Person> personList = new ArrayList<>();
 
+    static {
+        personList.add(new Person("Mukhtar", 2018, 80.0, 1.3));
+    }
+
 
     public static void save(Person p) {
         personList.add(p);

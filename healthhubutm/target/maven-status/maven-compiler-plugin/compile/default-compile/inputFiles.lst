@@ -3,4 +3,8 @@ C:\Internet Programming\healthhubutm\src\main\java\com\example\healthhub\model\P
 C:\Internet Programming\healthhubutm\src\main\java\com\example\healthhub\controller\AdminPersonDeleteServlet.java
 C:\Internet Programming\healthhubutm\src\main\java\com\example\healthhub\controller\AdminPersonListServlet.java
 C:\Internet Programming\healthhubutm\src\main\java\com\example\healthhub\controller\AdminPersonViewServlet.java
+C:\Internet Programming\healthhubutm\src\main\java\com\example\healthhub\controller\LoginServlet.java
+C:\Internet Programming\healthhubutm\src\main\java\com\example\healthhub\controller\ProfileServlet.java
+C:\Internet Programming\healthhubutm\src\main\java\com\example\healthhub\controller\LogoutServlet.java
 C:\Internet Programming\healthhubutm\src\main\java\com\example\healthhub\controller\BmiServlet.java
+C:\Internet Programming\healthhubutm\src\main\java\com\example\healthhub\model\User.java
